@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { AnalysisResult } from "@/types/blood-test";
 import { 
@@ -48,7 +47,7 @@ const OrganVisualization = ({ analysisResult }: OrganVisualizationProps) => {
       name: "Heart", 
       icon: <Heart className="h-10 w-10" />, 
       relatedTests: ["Hemoglobin", "Hematocrit", "Potassium", "LDL", "HDL", "Triglycerides", "Total Cholesterol"],
-      position: { top: '32%', left: '50%' }
+      position: { top: '30%', left: '50%' }
     },
     { 
       name: "Brain", 
@@ -60,25 +59,25 @@ const OrganVisualization = ({ analysisResult }: OrganVisualizationProps) => {
       name: "Liver", 
       icon: <ActivitySquare className="h-10 w-10" />, 
       relatedTests: ["ALT", "AST", "ALP", "GGT", "Bilirubin", "Albumin", "Total Protein"],
-      position: { top: '38%', left: '43%' }
+      position: { top: '35%', left: '40%' }
     },
     { 
       name: "Lungs", 
       icon: <Activity className="h-10 w-10" />, 
       relatedTests: ["Hemoglobin", "Bicarbonate", "Oxygen Saturation"],
-      position: { top: '32%', left: '61%' }
+      position: { top: '28%', left: '60%' }
     },
     { 
       name: "Kidneys", 
       icon: <ActivitySquare className="h-10 w-10" />, 
       relatedTests: ["Creatinine", "BUN", "eGFR", "Sodium", "Potassium", "Uric Acid"],
-      position: { top: '45%', left: '60%' }
+      position: { top: '40%', left: '63%' }
     },
     { 
       name: "Stomach", 
       icon: <Sandwich className="h-10 w-10" />, 
       relatedTests: ["Vitamin B12", "Intrinsic Factor"],
-      position: { top: '42%', left: '50%' }
+      position: { top: '38%', left: '50%' }
     },
     { 
       name: "Bone Marrow", 
@@ -163,16 +162,14 @@ const OrganVisualization = ({ analysisResult }: OrganVisualizationProps) => {
 
       {activeTab === 'anatomy' ? (
         <div className="relative h-[500px] w-full bg-gray-50 rounded-lg border border-gray-100 overflow-hidden">
-          {/* Human Body Silhouette */}
+          {/* Human Anatomy Illustration */}
           <div className="absolute inset-0 flex justify-center">
-            <svg viewBox="0 0 100 100" className="h-full preserve-aspect-ratio">
-              <path
-                d="M50,10 Q60,10 60,20 Q60,25 58,30 L58,35 Q65,38 65,45 L65,60 Q63,75 60,80 L55,90 Q53,95 50,95 Q47,95 45,90 L40,80 Q37,75 35,60 L35,45 Q35,38 42,35 L42,30 Q40,25 40,20 Q40,10 50,10 Z"
-                fill="#f5f5f5"
-                stroke="#e0e0e0"
-                strokeWidth="0.5"
-              />
-            </svg>
+            <img 
+              src="/lovable-uploads/af49a1c9-d7a6-492a-b24c-887292738874.png" 
+              alt="Human Anatomy Illustration" 
+              className="h-full object-contain opacity-80"
+              style={{ maxHeight: '500px' }}
+            />
           </div>
 
           {/* Organ Indicators */}
