@@ -5,13 +5,13 @@ import {
   Heart, 
   Brain, 
   ActivitySquare,
-  Lungs as LungsIcon,
-  Kidney,
+  Lungs,
+  Kidneys,
   Sandwich,
   CircleDashed,
   Pill,
   Droplets,
-  Bone as BoneIcon,
+  Bone,
   Dumbbell,
   Network
 } from "lucide-react";
@@ -56,12 +56,12 @@ const OrganVisualization = ({ analysisResult }: OrganVisualizationProps) => {
     },
     { 
       name: "Lungs", 
-      icon: <LungsIcon className="h-10 w-10" />, 
+      icon: <Lungs className="h-10 w-10" />, 
       relatedTests: ["Hemoglobin", "Bicarbonate", "Oxygen Saturation"]
     },
     { 
       name: "Kidneys", 
-      icon: <Kidney className="h-10 w-10" />, 
+      icon: <Kidneys className="h-10 w-10" />, 
       relatedTests: ["Creatinine", "BUN", "eGFR", "Sodium", "Potassium", "Uric Acid"]
     },
     { 
@@ -71,7 +71,7 @@ const OrganVisualization = ({ analysisResult }: OrganVisualizationProps) => {
     },
     { 
       name: "Bone Marrow", 
-      icon: <BoneIcon className="h-10 w-10" />, 
+      icon: <Bone className="h-10 w-10" />, 
       relatedTests: ["Hemoglobin", "Red Blood Cells", "White Blood Cells", "Platelets", "MCV", "MCH", "MCHC"] 
     },
     { 
