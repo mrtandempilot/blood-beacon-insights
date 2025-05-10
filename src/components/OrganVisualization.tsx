@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { AnalysisResult } from "@/types/blood-test";
 import { 
@@ -6,10 +5,9 @@ import {
   Brain, 
   ActivitySquare,
   Activity,
-  Kidney,
+  Pill,
   Sandwich,
   CircleDashed,
-  Pill,
   Droplets,
   Bone,
   Dumbbell,
@@ -61,7 +59,7 @@ const OrganVisualization = ({ analysisResult }: OrganVisualizationProps) => {
     },
     { 
       name: "Kidneys", 
-      icon: <Kidney className="h-10 w-10" />, 
+      icon: <ActivitySquare className="h-10 w-10" />, 
       relatedTests: ["Creatinine", "BUN", "eGFR", "Sodium", "Potassium", "Uric Acid"]
     },
     { 
