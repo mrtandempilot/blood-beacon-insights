@@ -4,16 +4,16 @@ import { AnalysisResult } from "@/types/blood-test";
 import { 
   Heart, 
   Brain, 
-  Liver, 
-  Lungs, 
-  Kidneys, 
-  Stomach,
-  LargeIntestine,
-  SmallIntestine,
-  BloodVessels,
-  Bone,
-  Muscle,
-  Nerve
+  ActivitySquare,
+  Lungs as LungsIcon,
+  Kidney,
+  Sandwich,
+  CircleDashed,
+  Pill,
+  Droplets,
+  Bone as BoneIcon,
+  Dumbbell,
+  Network
 } from "lucide-react";
 import { 
   Tooltip,
@@ -51,52 +51,52 @@ const OrganVisualization = ({ analysisResult }: OrganVisualizationProps) => {
     },
     { 
       name: "Liver", 
-      icon: <Liver className="h-10 w-10" />, 
+      icon: <ActivitySquare className="h-10 w-10" />, 
       relatedTests: ["ALT", "AST", "ALP", "GGT", "Bilirubin", "Albumin", "Total Protein"]
     },
     { 
       name: "Lungs", 
-      icon: <Lungs className="h-10 w-10" />, 
+      icon: <LungsIcon className="h-10 w-10" />, 
       relatedTests: ["Hemoglobin", "Bicarbonate", "Oxygen Saturation"]
     },
     { 
       name: "Kidneys", 
-      icon: <Kidneys className="h-10 w-10" />, 
+      icon: <Kidney className="h-10 w-10" />, 
       relatedTests: ["Creatinine", "BUN", "eGFR", "Sodium", "Potassium", "Uric Acid"]
     },
     { 
       name: "Stomach", 
-      icon: <Stomach className="h-10 w-10" />, 
+      icon: <Sandwich className="h-10 w-10" />, 
       relatedTests: ["Vitamin B12", "Intrinsic Factor"]
     },
     { 
       name: "Bone Marrow", 
-      icon: <Bone className="h-10 w-10" />, 
+      icon: <BoneIcon className="h-10 w-10" />, 
       relatedTests: ["Hemoglobin", "Red Blood Cells", "White Blood Cells", "Platelets", "MCV", "MCH", "MCHC"] 
     },
     { 
       name: "Blood", 
-      icon: <BloodVessels className="h-10 w-10" />,
+      icon: <Droplets className="h-10 w-10" />,
       relatedTests: ["Hemoglobin", "Hematocrit", "Red Blood Cells", "White Blood Cells", "Platelets"] 
     },
     { 
       name: "Muscles", 
-      icon: <Muscle className="h-10 w-10" />, 
+      icon: <Dumbbell className="h-10 w-10" />, 
       relatedTests: ["Creatinine", "AST", "Creatine Kinase"] 
     },
     { 
       name: "Intestines", 
-      icon: <SmallIntestine className="h-10 w-10" />, 
+      icon: <CircleDashed className="h-10 w-10" />, 
       relatedTests: ["Iron", "Vitamin B12", "Folate"] 
     },
     { 
       name: "Large Intestine", 
-      icon: <LargeIntestine className="h-10 w-10" />, 
+      icon: <Pill className="h-10 w-10" />, 
       relatedTests: ["Fecal Occult Blood", "Calprotectin"] 
     },
     { 
       name: "Immune System", 
-      icon: <Nerve className="h-10 w-10" />, 
+      icon: <Network className="h-10 w-10" />, 
       relatedTests: ["White Blood Cells", "CRP", "ESR"] 
     },
   ];
