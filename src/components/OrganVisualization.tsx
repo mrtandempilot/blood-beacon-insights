@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { AnalysisResult } from "@/types/blood-test";
 import { 
@@ -47,43 +48,49 @@ const OrganVisualization = ({ analysisResult }: OrganVisualizationProps) => {
       name: "Heart", 
       icon: <Heart className="h-10 w-10" />, 
       relatedTests: ["Hemoglobin", "Hematocrit", "Potassium", "LDL", "HDL", "Triglycerides", "Total Cholesterol"],
-      position: { top: '30%', left: '50%' }
+      position: { top: '42%', left: '50%' }
     },
     { 
       name: "Brain", 
       icon: <Brain className="h-10 w-10" />, 
       relatedTests: ["Sodium", "Glucose", "TSH"],
-      position: { top: '10%', left: '50%' }
+      position: { top: '16%', left: '50%' }
     },
     { 
       name: "Liver", 
       icon: <ActivitySquare className="h-10 w-10" />, 
       relatedTests: ["ALT", "AST", "ALP", "GGT", "Bilirubin", "Albumin", "Total Protein"],
-      position: { top: '35%', left: '40%' }
+      position: { top: '42%', left: '40%' }
     },
     { 
       name: "Lungs", 
       icon: <Activity className="h-10 w-10" />, 
       relatedTests: ["Hemoglobin", "Bicarbonate", "Oxygen Saturation"],
-      position: { top: '28%', left: '60%' }
+      position: { top: '35%', left: '50%' }
     },
     { 
       name: "Kidneys", 
       icon: <ActivitySquare className="h-10 w-10" />, 
       relatedTests: ["Creatinine", "BUN", "eGFR", "Sodium", "Potassium", "Uric Acid"],
-      position: { top: '40%', left: '63%' }
+      position: { top: '48%', left: '40%' }
     },
     { 
       name: "Stomach", 
       icon: <Sandwich className="h-10 w-10" />, 
       relatedTests: ["Vitamin B12", "Intrinsic Factor"],
-      position: { top: '38%', left: '50%' }
+      position: { top: '48%', left: '60%' }
+    },
+    { 
+      name: "Pancreas", 
+      icon: <Pill className="h-10 w-10" />, 
+      relatedTests: ["Glucose", "Amylase", "Lipase", "Insulin"],
+      position: { top: '55%', left: '36%' }
     },
     { 
       name: "Bone Marrow", 
       icon: <Bone className="h-10 w-10" />, 
       relatedTests: ["Hemoglobin", "Red Blood Cells", "White Blood Cells", "Platelets", "MCV", "MCH", "MCHC"],
-      position: { top: '55%', left: '45%' }
+      position: { top: '65%', left: '45%' }
     },
     { 
       name: "Blood", 
@@ -101,19 +108,19 @@ const OrganVisualization = ({ analysisResult }: OrganVisualizationProps) => {
       name: "Intestines", 
       icon: <CircleDashed className="h-10 w-10" />, 
       relatedTests: ["Iron", "Vitamin B12", "Folate"],
-      position: { top: '50%', left: '50%' }
+      position: { top: '65%', left: '50%' }
     },
     { 
-      name: "Large Intestine", 
+      name: "Reproductive System", 
       icon: <Pill className="h-10 w-10" />, 
-      relatedTests: ["Fecal Occult Blood", "Calprotectin"],
-      position: { top: '57%', left: '50%' }
+      relatedTests: ["Testosterone", "Estrogen", "FSH", "LH"],
+      position: { top: '75%', left: '50%' }
     },
     { 
       name: "Immune System", 
       icon: <Network className="h-10 w-10" />, 
       relatedTests: ["White Blood Cells", "CRP", "ESR"],
-      position: { top: '45%', left: '40%' }
+      position: { top: '45%', left: '45%' }
     },
   ];
 
@@ -165,9 +172,9 @@ const OrganVisualization = ({ analysisResult }: OrganVisualizationProps) => {
           {/* Human Anatomy Illustration */}
           <div className="absolute inset-0 flex justify-center">
             <img 
-              src="/lovable-uploads/af49a1c9-d7a6-492a-b24c-887292738874.png" 
+              src="/lovable-uploads/f4d54b8c-06e2-49df-b2b6-c2fcb61d5194.png" 
               alt="Human Anatomy Illustration" 
-              className="h-full object-contain opacity-80"
+              className="h-full object-contain"
               style={{ maxHeight: '500px' }}
             />
           </div>
