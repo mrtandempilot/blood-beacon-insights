@@ -6,6 +6,7 @@ import { analyzeBloodTests } from "@/utils/blood-test-analyzer";
 import BloodTestCategory from "@/components/BloodTestCategory";
 import AbnormalValuesPanel from "@/components/AbnormalValuesPanel";
 import TestProfileSelector from "@/components/TestProfileSelector";
+import OrganVisualization from "@/components/OrganVisualization";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Index = () => {
@@ -89,6 +90,9 @@ const Index = () => {
           {/* Side panel */}
           <div className="md:w-1/3 space-y-6">
             <AbnormalValuesPanel analysisResult={analysisResult} />
+            
+            {/* Add the Organ Visualization component */}
+            <OrganVisualization analysisResult={analysisResult} />
             
             <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
               <h3 className="text-lg font-bold mb-3 text-gray-800">About This Tool</h3>

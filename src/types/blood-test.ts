@@ -32,3 +32,10 @@ export interface AnalysisResult {
   affectedOrgans: string[];
   explanation: string;
 }
+
+export interface OrganHighlightInfo {
+  name: string;
+  icon: string;
+  description: string;
+  relatedTests: string[];
+}
