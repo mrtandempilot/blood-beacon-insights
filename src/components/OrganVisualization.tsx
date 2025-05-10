@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { AnalysisResult } from "@/types/blood-test";
 import { 
@@ -20,6 +21,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
+import { Card, CardContent } from "@/components/ui/card";
 
 interface OrganVisualizationProps {
   analysisResult: AnalysisResult;
@@ -29,73 +31,90 @@ interface OrganInfo {
   name: string;
   icon: React.ReactNode;
   relatedTests: string[];
+  position?: {
+    top: string;
+    left: string;
+  };
 }
 
 const OrganVisualization = ({ analysisResult }: OrganVisualizationProps) => {
   const [animatedOrgans, setAnimatedOrgans] = useState<string[]>([]);
   const { affectedOrgans } = analysisResult;
+  const [activeTab, setActiveTab] = useState<'grid' | 'anatomy'>('anatomy');
 
-  // Map the organs to their respective icons and related tests
+  // Map the organs to their respective icons, related tests, and positions on the anatomy diagram
   const organs: OrganInfo[] = [
     { 
       name: "Heart", 
       icon: <Heart className="h-10 w-10" />, 
-      relatedTests: ["Hemoglobin", "Hematocrit", "Potassium", "LDL", "HDL", "Triglycerides", "Total Cholesterol"]
+      relatedTests: ["Hemoglobin", "Hematocrit", "Potassium", "LDL", "HDL", "Triglycerides", "Total Cholesterol"],
+      position: { top: '32%', left: '50%' }
     },
     { 
       name: "Brain", 
       icon: <Brain className="h-10 w-10" />, 
-      relatedTests: ["Sodium", "Glucose", "TSH"]
+      relatedTests: ["Sodium", "Glucose", "TSH"],
+      position: { top: '10%', left: '50%' }
     },
     { 
       name: "Liver", 
       icon: <ActivitySquare className="h-10 w-10" />, 
-      relatedTests: ["ALT", "AST", "ALP", "GGT", "Bilirubin", "Albumin", "Total Protein"]
+      relatedTests: ["ALT", "AST", "ALP", "GGT", "Bilirubin", "Albumin", "Total Protein"],
+      position: { top: '38%', left: '43%' }
     },
     { 
       name: "Lungs", 
       icon: <Activity className="h-10 w-10" />, 
-      relatedTests: ["Hemoglobin", "Bicarbonate", "Oxygen Saturation"]
+      relatedTests: ["Hemoglobin", "Bicarbonate", "Oxygen Saturation"],
+      position: { top: '32%', left: '61%' }
     },
     { 
       name: "Kidneys", 
       icon: <ActivitySquare className="h-10 w-10" />, 
-      relatedTests: ["Creatinine", "BUN", "eGFR", "Sodium", "Potassium", "Uric Acid"]
+      relatedTests: ["Creatinine", "BUN", "eGFR", "Sodium", "Potassium", "Uric Acid"],
+      position: { top: '45%', left: '60%' }
     },
     { 
       name: "Stomach", 
       icon: <Sandwich className="h-10 w-10" />, 
-      relatedTests: ["Vitamin B12", "Intrinsic Factor"]
+      relatedTests: ["Vitamin B12", "Intrinsic Factor"],
+      position: { top: '42%', left: '50%' }
     },
     { 
       name: "Bone Marrow", 
       icon: <Bone className="h-10 w-10" />, 
-      relatedTests: ["Hemoglobin", "Red Blood Cells", "White Blood Cells", "Platelets", "MCV", "MCH", "MCHC"] 
+      relatedTests: ["Hemoglobin", "Red Blood Cells", "White Blood Cells", "Platelets", "MCV", "MCH", "MCHC"],
+      position: { top: '55%', left: '45%' }
     },
     { 
       name: "Blood", 
       icon: <Droplets className="h-10 w-10" />,
-      relatedTests: ["Hemoglobin", "Hematocrit", "Red Blood Cells", "White Blood Cells", "Platelets"] 
+      relatedTests: ["Hemoglobin", "Hematocrit", "Red Blood Cells", "White Blood Cells", "Platelets"],
+      position: { top: '50%', left: '53%' }
     },
     { 
       name: "Muscles", 
       icon: <Dumbbell className="h-10 w-10" />, 
-      relatedTests: ["Creatinine", "AST", "Creatine Kinase"] 
+      relatedTests: ["Creatinine", "AST", "Creatine Kinase"],
+      position: { top: '60%', left: '63%' }
     },
     { 
       name: "Intestines", 
       icon: <CircleDashed className="h-10 w-10" />, 
-      relatedTests: ["Iron", "Vitamin B12", "Folate"] 
+      relatedTests: ["Iron", "Vitamin B12", "Folate"],
+      position: { top: '50%', left: '50%' }
     },
     { 
       name: "Large Intestine", 
       icon: <Pill className="h-10 w-10" />, 
-      relatedTests: ["Fecal Occult Blood", "Calprotectin"] 
+      relatedTests: ["Fecal Occult Blood", "Calprotectin"],
+      position: { top: '57%', left: '50%' }
     },
     { 
       name: "Immune System", 
       icon: <Network className="h-10 w-10" />, 
-      relatedTests: ["White Blood Cells", "CRP", "ESR"] 
+      relatedTests: ["White Blood Cells", "CRP", "ESR"],
+      position: { top: '45%', left: '40%' }
     },
   ];
 
@@ -114,61 +133,164 @@ const OrganVisualization = ({ analysisResult }: OrganVisualizationProps) => {
 
   return (
     <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-4">
-      <h3 className="text-xl font-bold mb-4 text-gray-800">Organ Visualization</h3>
-      
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 mt-4">
-        {organs.map((organ) => {
-          const isAffected = affectedOrgans.includes(organ.name);
-          const isAnimated = animatedOrgans.includes(organ.name);
-          
-          return (
-            <TooltipProvider key={organ.name}>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <div
-                    className={cn(
-                      "flex flex-col items-center justify-center p-2 rounded-lg border transition-all duration-300",
-                      isAffected ? "border-medical-red" : "border-gray-200",
-                      isAnimated && isAffected && "animate-pulse"
-                    )}
-                  >
+      <div className="flex justify-between items-center">
+        <h3 className="text-xl font-bold mb-4 text-gray-800">Organ Visualization</h3>
+        <div className="flex space-x-2 mb-4">
+          <button
+            className={cn(
+              "px-3 py-1 rounded-md text-sm font-medium transition-colors",
+              activeTab === 'anatomy'
+                ? "bg-medical-blue text-white"
+                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+            )}
+            onClick={() => setActiveTab('anatomy')}
+          >
+            Anatomy View
+          </button>
+          <button
+            className={cn(
+              "px-3 py-1 rounded-md text-sm font-medium transition-colors",
+              activeTab === 'grid'
+                ? "bg-medical-blue text-white"
+                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+            )}
+            onClick={() => setActiveTab('grid')}
+          >
+            Grid View
+          </button>
+        </div>
+      </div>
+
+      {activeTab === 'anatomy' ? (
+        <div className="relative h-[500px] w-full bg-gray-50 rounded-lg border border-gray-100 overflow-hidden">
+          {/* Human Body Silhouette */}
+          <div className="absolute inset-0 flex justify-center">
+            <svg viewBox="0 0 100 100" className="h-full preserve-aspect-ratio">
+              <path
+                d="M50,10 Q60,10 60,20 Q60,25 58,30 L58,35 Q65,38 65,45 L65,60 Q63,75 60,80 L55,90 Q53,95 50,95 Q47,95 45,90 L40,80 Q37,75 35,60 L35,45 Q35,38 42,35 L42,30 Q40,25 40,20 Q40,10 50,10 Z"
+                fill="#f5f5f5"
+                stroke="#e0e0e0"
+                strokeWidth="0.5"
+              />
+            </svg>
+          </div>
+
+          {/* Organ Indicators */}
+          {organs.filter(organ => organ.position).map((organ) => {
+            const isAffected = affectedOrgans.includes(organ.name);
+            const isAnimated = animatedOrgans.includes(organ.name);
+
+            return (
+              <TooltipProvider key={organ.name}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
                     <div
                       className={cn(
-                        "transition-colors duration-500",
-                        isAffected 
-                          ? isAnimated 
-                            ? "text-medical-red" 
-                            : "text-medical-red"
-                          : "text-gray-500"
+                        "absolute transform -translate-x-1/2 -translate-y-1/2 rounded-full border-2 z-10 cursor-pointer transition-all duration-300",
+                        isAffected ? "w-8 h-8 border-medical-red" : "w-6 h-6 border-gray-400",
+                        isAnimated && isAffected && "animate-pulse"
+                      )}
+                      style={{
+                        top: organ.position?.top,
+                        left: organ.position?.left,
+                        backgroundColor: isAffected ? 'rgba(234, 56, 76, 0.2)' : 'rgba(229, 231, 235, 0.6)',
+                      }}
+                    >
+                      <div
+                        className={cn(
+                          "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-colors duration-500",
+                          isAffected ? "text-medical-red" : "text-gray-500"
+                        )}
+                      >
+                        <span className="sr-only">{organ.name}</span>
+                        <div className="scale-75">
+                          {organ.icon}
+                        </div>
+                      </div>
+                    </div>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <div className="max-w-xs">
+                      <p className="font-semibold">{organ.name}</p>
+                      {isAffected && (
+                        <>
+                          <p className="text-medical-red text-sm mt-1">Potentially affected</p>
+                          <div className="mt-1">
+                            <p className="text-xs font-medium">Related tests:</p>
+                            <ul className="text-xs list-disc list-inside mt-1">
+                              {organ.relatedTests.map(test => (
+                                <li key={test}>{test}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            );
+          })}
+        </div>
+      ) : (
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 mt-4">
+          {organs.map((organ) => {
+            const isAffected = affectedOrgans.includes(organ.name);
+            const isAnimated = animatedOrgans.includes(organ.name);
+            
+            return (
+              <TooltipProvider key={organ.name}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <div
+                      className={cn(
+                        "flex flex-col items-center justify-center p-2 rounded-lg border transition-all duration-300",
+                        isAffected ? "border-medical-red" : "border-gray-200",
+                        isAnimated && isAffected && "animate-pulse"
                       )}
                     >
-                      {organ.icon}
+                      <div
+                        className={cn(
+                          "transition-colors duration-500",
+                          isAffected 
+                            ? isAnimated 
+                              ? "text-medical-red" 
+                              : "text-medical-red"
+                            : "text-gray-500"
+                        )}
+                      >
+                        {organ.icon}
+                      </div>
+                      <span className="mt-2 text-sm font-medium">{organ.name}</span>
                     </div>
-                    <span className="mt-2 text-sm font-medium">{organ.name}</span>
-                  </div>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <div className="max-w-xs">
-                    <p className="font-semibold">{organ.name}</p>
-                    {isAffected && (
-                      <>
-                        <p className="text-medical-red text-sm mt-1">Potentially affected</p>
-                        <div className="mt-1">
-                          <p className="text-xs font-medium">Related tests:</p>
-                          <ul className="text-xs list-disc list-inside mt-1">
-                            {organ.relatedTests.map(test => (
-                              <li key={test}>{test}</li>
-                            ))}
-                          </ul>
-                        </div>
-                      </>
-                    )}
-                  </div>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          );
-        })}
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <div className="max-w-xs">
+                      <p className="font-semibold">{organ.name}</p>
+                      {isAffected && (
+                        <>
+                          <p className="text-medical-red text-sm mt-1">Potentially affected</p>
+                          <div className="mt-1">
+                            <p className="text-xs font-medium">Related tests:</p>
+                            <ul className="text-xs list-disc list-inside mt-1">
+                              {organ.relatedTests.map(test => (
+                                <li key={test}>{test}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            );
+          })}
+        </div>
+      )}
+
+      <div className="mt-4 pt-2 border-t border-gray-100 text-xs text-gray-500">
+        <p>Click on organs to view related test information. Highlighted organs may be affected based on abnormal test results.</p>
       </div>
     </div>
   );
