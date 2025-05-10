@@ -5,8 +5,8 @@ import {
   Heart, 
   Brain, 
   ActivitySquare,
-  Lungs,
-  Kidneys,
+  Activity,
+  Kidney,
   Sandwich,
   CircleDashed,
   Pill,
@@ -56,12 +56,12 @@ const OrganVisualization = ({ analysisResult }: OrganVisualizationProps) => {
     },
     { 
       name: "Lungs", 
-      icon: <Lungs className="h-10 w-10" />, 
+      icon: <Activity className="h-10 w-10" />, 
       relatedTests: ["Hemoglobin", "Bicarbonate", "Oxygen Saturation"]
     },
     { 
       name: "Kidneys", 
-      icon: <Kidneys className="h-10 w-10" />, 
+      icon: <Kidney className="h-10 w-10" />, 
       relatedTests: ["Creatinine", "BUN", "eGFR", "Sodium", "Potassium", "Uric Acid"]
     },
     { 
